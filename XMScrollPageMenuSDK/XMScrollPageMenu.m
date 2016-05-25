@@ -319,7 +319,7 @@
     
     NSInteger count = childViews.count;
     
-    self.scrollView.contentSize = CGSizeMake(View_W * count, View_H - 40);
+    self.scrollView.contentSize = CGSizeMake(View_W * count, 0);
     for (int i = 0; i < count ; i++) {
         UIViewController *childVc = childViews[i];
         childVc.view.frame = CGRectMake(View_W * i, 0, View_W, View_H - 40);
