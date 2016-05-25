@@ -25,7 +25,7 @@
     
     
     XMScrollPageMenu *menu = [XMScrollPageMenu menu];
-    menu.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
+    menu.frame = CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height - 64);
     
     TestViewControllerOne *one = [[TestViewControllerOne alloc] init];
     TestViewControllerTow *tow = [[TestViewControllerTow alloc] init];
@@ -54,8 +54,8 @@
     menu.titleFont = [UIFont systemFontOfSize:20];
     menu.titleSelectedFont = [UIFont systemFontOfSize:15];
     menu.sliderColor = [UIColor blueColor];
-    menu.numberOfTitles = 2;
-    menu.titleBarHeight = 100;
+    menu.numberOfTitles = 6;
+//    menu.titleBarHeight = 100;
     [self.view addSubview:menu];
     
 }

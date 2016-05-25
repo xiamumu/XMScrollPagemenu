@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		48C6F6E81CF2F54F009919F9 /* XMScrollPageMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C6F6E51CF2F54F009919F9 /* XMScrollPageMenu.m */; };
 		48C6F6EC1CF2FBCE009919F9 /* TestViewControllerOne.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C6F6EB1CF2FBCE009919F9 /* TestViewControllerOne.m */; };
 		48C6F6EF1CF2FBD9009919F9 /* TestViewControllerTow.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C6F6EE1CF2FBD9009919F9 /* TestViewControllerTow.m */; };
 		48C6F6F21CF2FBE6009919F9 /* TestViewControllerThree.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C6F6F11CF2FBE6009919F9 /* TestViewControllerThree.m */; };
 		48C6F6F51CF2FBF2009919F9 /* TestViewControllerFour.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C6F6F41CF2FBF2009919F9 /* TestViewControllerFour.m */; };
 		48C6F6F81CF2FC03009919F9 /* TestViewControllerFive.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C6F6F71CF2FC03009919F9 /* TestViewControllerFive.m */; };
+		48E9481A1CF5A0AD0093F866 /* XMScrollPageMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E948191CF5A0AD0093F866 /* XMScrollPageMenu.m */; };
 		48ED95231CF2F36D005802AA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 48ED95221CF2F36D005802AA /* main.m */; };
 		48ED95261CF2F36D005802AA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 48ED95251CF2F36D005802AA /* AppDelegate.m */; };
 		48ED95291CF2F36D005802AA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48ED95281CF2F36D005802AA /* ViewController.m */; };
@@ -41,8 +41,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		48C6F6E41CF2F54F009919F9 /* XMScrollPageMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMScrollPageMenu.h; sourceTree = "<group>"; };
-		48C6F6E51CF2F54F009919F9 /* XMScrollPageMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMScrollPageMenu.m; sourceTree = "<group>"; };
 		48C6F6EA1CF2FBCE009919F9 /* TestViewControllerOne.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewControllerOne.h; sourceTree = "<group>"; };
 		48C6F6EB1CF2FBCE009919F9 /* TestViewControllerOne.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewControllerOne.m; sourceTree = "<group>"; };
 		48C6F6ED1CF2FBD9009919F9 /* TestViewControllerTow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewControllerTow.h; sourceTree = "<group>"; };
@@ -53,6 +51,8 @@
 		48C6F6F41CF2FBF2009919F9 /* TestViewControllerFour.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewControllerFour.m; sourceTree = "<group>"; };
 		48C6F6F61CF2FC03009919F9 /* TestViewControllerFive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewControllerFive.h; sourceTree = "<group>"; };
 		48C6F6F71CF2FC03009919F9 /* TestViewControllerFive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewControllerFive.m; sourceTree = "<group>"; };
+		48E948181CF5A0AD0093F866 /* XMScrollPageMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMScrollPageMenu.h; sourceTree = "<group>"; };
+		48E948191CF5A0AD0093F866 /* XMScrollPageMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMScrollPageMenu.m; sourceTree = "<group>"; };
 		48ED951E1CF2F36D005802AA /* XMScrollPageMenu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XMScrollPageMenu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48ED95221CF2F36D005802AA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		48ED95241CF2F36D005802AA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -96,13 +96,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		48C6F6E31CF2F54F009919F9 /* XMScrollPageMenu */ = {
+		48E948171CF5A0AD0093F866 /* XMScrollPageMenuSDK */ = {
 			isa = PBXGroup;
 			children = (
-				48C6F6E41CF2F54F009919F9 /* XMScrollPageMenu.h */,
-				48C6F6E51CF2F54F009919F9 /* XMScrollPageMenu.m */,
+				48E948181CF5A0AD0093F866 /* XMScrollPageMenu.h */,
+				48E948191CF5A0AD0093F866 /* XMScrollPageMenu.m */,
 			);
-			path = XMScrollPageMenu;
+			name = XMScrollPageMenuSDK;
+			path = ../../XMScrollPageMenuSDK;
 			sourceTree = "<group>";
 		};
 		48ED95151CF2F36D005802AA = {
@@ -128,7 +129,7 @@
 		48ED95201CF2F36D005802AA /* XMScrollPageMenu */ = {
 			isa = PBXGroup;
 			children = (
-				48C6F6E31CF2F54F009919F9 /* XMScrollPageMenu */,
+				48E948171CF5A0AD0093F866 /* XMScrollPageMenuSDK */,
 				48ED95241CF2F36D005802AA /* AppDelegate.h */,
 				48ED95251CF2F36D005802AA /* AppDelegate.m */,
 				48ED95271CF2F36D005802AA /* ViewController.h */,
@@ -315,8 +316,8 @@
 				48C6F6F21CF2FBE6009919F9 /* TestViewControllerThree.m in Sources */,
 				48ED95261CF2F36D005802AA /* AppDelegate.m in Sources */,
 				48C6F6F51CF2FBF2009919F9 /* TestViewControllerFour.m in Sources */,
+				48E9481A1CF5A0AD0093F866 /* XMScrollPageMenu.m in Sources */,
 				48ED95231CF2F36D005802AA /* main.m in Sources */,
-				48C6F6E81CF2F54F009919F9 /* XMScrollPageMenu.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
