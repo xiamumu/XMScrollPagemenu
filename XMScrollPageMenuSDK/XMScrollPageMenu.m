@@ -49,7 +49,7 @@
 // 滑块
 /** 文字下面滑块的颜色 */
 @property (nonatomic, strong) UIColor *sliderColor;
-/** 文字下面滑块frame */
+/** 文字下面滑块Size */
 @property (nonatomic, assign) CGSize sliderSize;
 
 
@@ -112,14 +112,8 @@
 - (void)setSelectedPageIndex:(NSInteger)selectedPageIndex
 {
     _selectedPageIndex = selectedPageIndex;
-    UIButton *btn = self.btns[selectedPageIndex];
-    self.selectedBtn.selected = NO;
-    btn.selected = YES;
-    self.selectedBtn = btn;
-    CGFloat centerX = btn.center.x;
-    self.slider.center = CGPointMake(centerX, CGRectGetMaxY(btn.frame));
     
-    [self orderChangeAction:btn];
+    [self orderChangeAction:self.btns[selectedPageIndex]];
 }
 // 设置自身高度
 - (CGFloat)height
@@ -245,24 +239,31 @@
     }
 
     CGFloat sliderHeight = self.sliderSize.height;
+    CGFloat sliderWidth = self.sliderSize.width;
     if (sliderHeight == 0) {
         sliderHeight = 2;
-        for (int i = 0; i < count ; i++) {
-            UIButton *btn = self.btns[i];
-            btn.frame = CGRectMake(btnW * i, 0, btnW, self.height - sliderHeight);
-        }
-        self.slider.frame = CGRectMake(0, self.height - sliderHeight, btnW, sliderHeight);
+        
     }
-    else
-    {
-        for (int i = 0; i < count ; i++) {
-            UIButton *btn = self.btns[i];
-            btn.frame = CGRectMake(btnW * i, 0, btnW, self.height - sliderHeight);
-        }
-        self.slider.frame = CGRectMake((btnW - self.sliderSize.width) * 0.5, self.height - sliderHeight, self.sliderSize.width, sliderHeight);
+    if (sliderWidth == 0) {
+        sliderWidth = btnW;
     }
+    
+    self.slider.frame = CGRectMake((btnW - sliderWidth) * 0.5, self.height - sliderHeight, sliderWidth, sliderHeight);
+    
+    for (int i = 0; i < count ; i++) {
+        UIButton *btn = self.btns[i];
+        btn.frame = CGRectMake(btnW * i, 0, btnW, self.height - sliderHeight);
+    }
+    
     self.scrollView.frame = CGRectMake(0, 0, View_W, self.height);
     self.scrollView.contentSize = CGSizeMake(btnW * count, 0);
+    
+    // 更新默认选择显示第几页时滑块的位置
+    CGFloat sliderCenter_X = self.slider.center.x;
+    CGFloat selectedBtnCenter_X = self.selectedBtn.center.x;
+    if (sliderCenter_X != selectedBtnCenter_X) {
+        self.slider.center = CGPointMake(selectedBtnCenter_X, self.slider.center.y);
+    }
 }
 @end
 
@@ -324,7 +325,6 @@
         UIViewController *childVc = childViews[i];
         childVc.view.frame = CGRectMake(View_W * i, 0, View_W, View_H - 40);
         [self.scrollView addSubview:childVc.view];
-
     }
     
 }
