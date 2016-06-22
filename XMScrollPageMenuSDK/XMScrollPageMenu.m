@@ -10,8 +10,6 @@
 #define View_W self.frame.size.width
 #define View_H self.frame.size.height
 
-#define RGBColor(r, g, b)  [UIColor colorWithRed:(r) / 255.0 green:(g) / 255.0 blue:(b) / 255.0 alpha:1.0]
-#define RandomColor RGBColor(arc4random_uniform(256), arc4random_uniform(256), arc4random_uniform(256))
 
 #import "XMScrollPageMenu.h"
 
@@ -72,7 +70,6 @@
     if (self) {
         
         self.height = 40;
-//        self.sliderHeight = 2;
         self.backgroundColor = [UIColor whiteColor];
         
         UIScrollView *scrollView = [[UIScrollView alloc] init];
@@ -166,7 +163,8 @@
     self.selectedBtn.selected = NO;
     btn.selected = YES;
     self.selectedBtn = btn;
-
+    
+    
     // 设置滑块的位置
     if (self.sliderSize.height != 0) {
         CGFloat sliderX = btn.frame.origin.x + (btn.frame.size.width- self.sliderSize.width) * 0.5;
@@ -179,14 +177,21 @@
     {
         self.slider.frame = CGRectMake(btn.frame.origin.x, CGRectGetMaxY(btn.frame), btn.frame.size.width, 2);
     }
-
+    
     // 设置文字和滑块滚动的位置
     CGPoint point = CGPointMake(btn.frame.origin.x, 0);
     CGFloat btnMaxX = CGRectGetMaxX(btn.frame);
+    CGFloat btnMinX = CGRectGetMinX(btn.frame);
     CGFloat maxX = (self.titles.count + 2) * btn.frame.size.width - View_W;
     
-    if (btnMaxX < maxX) {
+    
+    if (btnMaxX < maxX && btnMaxX > View_W) {
         [self.scrollView setContentOffset:point animated:YES];
+    }
+    else if (btnMinX < View_W)
+    {
+        [self.scrollView setContentOffset:CGPointZero animated:YES];
+        
     }
     
     // 重新设置文字大小
@@ -210,7 +215,6 @@
     [btn setTitle:title forState:UIControlStateNormal];
     [btn setTitleColor:[UIColor orangeColor] forState:UIControlStateSelected];
     [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    btn.titleLabel.font = [UIFont systemFontOfSize:14];
     [btn addTarget:self action:@selector(orderChangeAction:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:btn];
     return btn;
@@ -237,7 +241,7 @@
             btnW = View_W / 6 + 5;
         }
     }
-
+    
     CGFloat sliderHeight = self.sliderSize.height;
     CGFloat sliderWidth = self.sliderSize.width;
     if (sliderHeight == 0) {
@@ -269,7 +273,7 @@
 
 
 
-//=================================
+//==========================================================================
 
 @interface XMScrollPageMenu ()<XMTopButtonsViewDelegate,UIScrollViewDelegate>
 
@@ -331,6 +335,7 @@
 // 设置默认选择的按钮
 - (void)setSelectedPageIndex:(NSInteger)selectedPageIndex
 {
+    if (!selectedPageIndex) return;
     _selectedPageIndex = selectedPageIndex;
     self.topView.selectedPageIndex = selectedPageIndex;
     [self topView:self.topView didSelectedBtnAtIndex:selectedPageIndex];
@@ -339,18 +344,21 @@
 // 设置上面按钮的文字数组
 - (void)setTitles:(NSArray *)titles
 {
+    if (!titles) return;
     _titles = titles;
     self.topView.titles = titles;
 }
 // 设置上面滚动条的高度
 - (void)setTitleBarHeight:(CGFloat)titleBarHeight
 {
+    if (!titleBarHeight) return;
     _titleBarHeight = titleBarHeight;
     self.topView.frame = CGRectMake(0, 0, View_W, titleBarHeight);
 }
 // 设置上面可以显示的按钮个数
 - (void)setNumberOfTitles:(NSInteger)numberOfTitles
 {
+    if (!numberOfTitles) return;
     _numberOfTitles = numberOfTitles;
     self.topView.numberOfTitles = numberOfTitles;
 }
@@ -361,12 +369,14 @@
 // 文字未选中时的颜色
 - (void)setTitleColor:(UIColor *)titleColor
 {
+    if (!titleColor) return;
     _titleColor = titleColor;
     self.topView.titleColor = titleColor;
 }
 // 文字选中时的颜色
 - (void)setTitleSelectedColor:(UIColor *)titleSelectedColor
 {
+    if (!titleSelectedColor) return;
     _titleSelectedColor = titleSelectedColor;
     self.topView.titleSelectedColor = titleSelectedColor;
 }
@@ -374,12 +384,14 @@
 // 未选中文字的大小
 - (void)setTitleFont:(UIFont *)titleFont
 {
+    if (!titleFont) return;
     _titleFont = titleFont;
     self.topView.titleFont = titleFont;
 }
 // 选中文字的大小
 - (void)setTitleSelectedFont:(UIFont *)titleSelectedFont
 {
+    if (!titleSelectedFont) return;
     _titleSelectedFont = titleSelectedFont;
     self.topView.titleSelectedFont = titleSelectedFont;
 }
@@ -390,12 +402,14 @@
 // 滑块的颜色
 - (void)setSliderColor:(UIColor *)sliderColor
 {
+    if (!sliderColor) return;
     _sliderColor = sliderColor;
     self.topView.sliderColor = sliderColor;
 }
 // 滑块的高度
 - (void)setSliderSize:(CGSize)sliderSize
 {
+    if (!sliderSize.width) return;
     _sliderSize = sliderSize;
     self.topView.sliderSize = sliderSize;
 }
@@ -405,7 +419,7 @@
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     NSUInteger currentPage = scrollView.contentOffset.x / View_W;
-
+    
     // 根据滚动的位置切换被选中的按钮
     self.topView.selectedPageIndex = currentPage;
 }
@@ -424,6 +438,7 @@
     if (!self.titleBarHeight) {
         self.topView.frame = CGRectMake(0, 0, View_W, topViewH);
     }
+    
     CGFloat topViewMaxY = CGRectGetMaxY(self.topView.frame);
     self.scrollView.frame = CGRectMake(0, topViewMaxY, View_W, View_H - topViewMaxY);
 }
