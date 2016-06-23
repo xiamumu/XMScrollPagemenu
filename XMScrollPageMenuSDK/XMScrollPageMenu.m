@@ -215,6 +215,7 @@
     [btn setTitle:title forState:UIControlStateNormal];
     [btn setTitleColor:[UIColor orangeColor] forState:UIControlStateSelected];
     [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    btn.titleLabel.font = [UIFont systemFontOfSize:17];
     [btn addTarget:self action:@selector(orderChangeAction:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:btn];
     return btn;
